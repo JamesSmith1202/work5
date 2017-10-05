@@ -1,2 +1,15 @@
-run: main.c mystrcat.c mystrchr.c mystrcmp.c mystrcpy.c mystrlen.c mystrncat.c mystrncpy.c myheaders.h
-	gcc main.c mystrcat.c mystrchr.c mystrcmp.c mystrcpy.c mystrlen.c mystrncat.c mystrncpy.c myheaders.h -o run
+all: mystrfunctions.o main.o
+	gcc -o run mystrfunctions.o main.o
+
+mystrfunctions.o: mystrfunctions.c
+	gcc -c mystrfunctions.c
+
+main.o: main.c myheaders.h
+	gcc -c main.c
+
+clean:
+	rm *.o
+	rm -f *~
+
+run: all
+	./run
